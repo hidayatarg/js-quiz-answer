@@ -18,9 +18,20 @@
 .choice-prefix {
     padding: 1.5rem 2.5rem;
     background-color: #56a5eb;
+    color: #fff;
 }
 
 .choice-text {
     padding: 1.5rem;
     width: 100%;
+}
+
+.correct {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.incorrect {
+    background-color: #dc3545;
+    color: #fff;
 }

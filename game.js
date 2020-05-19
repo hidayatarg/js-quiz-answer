@@ -42,7 +42,7 @@ startGame = () => {
   questionCounter = 0;
   score = 0;
   availableQuestions = [...questions]
-  console.log(availableQuestions);
+  // console.log(availableQuestions);
   
   getNewQuestion();
 }
@@ -66,9 +66,7 @@ getNewQuestion = () => {
   });
   // delete the current question from the question array
   availableQuestions.splice(questionIndex, 1)
-  
   acceptingAnswers = true;
-  console.log('the curent avalibale question: ', availableQuestions);
 }
 
 choice.forEach(choice => {
@@ -79,7 +77,17 @@ choice.forEach(choice => {
       const selectedChoice = e.target;
       const selectedAnswer = selectedChoice.dataset['number'];
       // after we anser get the new question
-      getNewQuestion();
+
+      const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+
+      console.log(classToApply)
+      // update the class
+      selectedChoice.parentElement.classList.add(classToApply)
+      // timeout before remove the class
+      setTimeout(() => {
+        selectedChoice.parentElement.classList.remove(classToApply)
+        getNewQuestion();
+      }, 500);
     });
 })
 
