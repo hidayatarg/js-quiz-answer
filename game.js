@@ -48,6 +48,10 @@ startGame = () => {
 }
 
 getNewQuestion = () => {
+  if (availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+    // go to the end page question are finished
+    return window.location.assign('/end.html')
+  }
   questionCounter++;
   // Math.floor(Math.random() * 3)
  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
