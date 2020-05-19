@@ -5,7 +5,7 @@ const question = document.getElementById('question');
 const choice = Array.from(document.getElementsByClassName('choice-text'));
 
 let currentQuestion = {};
-let acceptingAnswers = true;
+let acceptingAnswers = false;
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
@@ -53,6 +53,18 @@ getNewQuestion = () => {
  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
   question.innerText = currentQuestion.question;
+
+  // iterate on choice of the question
+  choice.forEach(choice => {
+    // get the data number
+    const number = choice.dataset['number'];
+    choice.innerText = currentQuestion['choice' + number];
+  });
+  // delete the current question from the question array
+  availableQuestions.splice(questionIndex, 1)
+  
+  acceptingAnswers = true;
+  console.log('the curent avalibale question: ', availableQuestions);
 }
 
 startGame();
