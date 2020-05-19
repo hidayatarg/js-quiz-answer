@@ -67,4 +67,16 @@ getNewQuestion = () => {
   console.log('the curent avalibale question: ', availableQuestions);
 }
 
+choice.forEach(choice => {
+    choice.addEventListener('click', e =>{
+      // console.log(e.target)
+      if (!acceptingAnswers)  return;
+      acceptingAnswers = false;
+      const selectedChoice = e.target;
+      const selectedAnswer = selectedChoice.dataset['number'];
+      // after we anser get the new question
+      getNewQuestion();
+    });
+})
+
 startGame();
