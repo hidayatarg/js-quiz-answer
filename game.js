@@ -1,8 +1,11 @@
+// CONSTANTS
 const CORRECT_BONUS = 10;
 const MAX_QUESTIONS = 3;
 
 const question = document.getElementById('question');
 const choice = Array.from(document.getElementsByClassName('choice-text'));
+const questionCounterText = document.getElementById('questionCounter');
+const scoreText = document.getElementById('score');
 
 let currentQuestion = {};
 let acceptingAnswers = false;
@@ -53,6 +56,11 @@ getNewQuestion = () => {
     return window.location.assign('/end.html')
   }
   questionCounter++;
+
+  // Head Up Display
+  questionCounterText.innerHTML = `${questionCounter}/${MAX_QUESTIONS}`;
+
+
   // Math.floor(Math.random() * 3)
  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
   currentQuestion = availableQuestions[questionIndex];
@@ -78,7 +86,10 @@ choice.forEach(choice => {
       const selectedAnswer = selectedChoice.dataset['number'];
       // after we anser get the new question
 
-      const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+      const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect';
+
+      if (classToApply === 'correct')
+        incrementScore(CORRECT_BONUS);
 
       // console.log(classToApply)
       // update the class
@@ -87,8 +98,13 @@ choice.forEach(choice => {
       setTimeout(() => {
         selectedChoice.parentElement.classList.remove(classToApply)
         getNewQuestion();
-      }, 500);
+      }, 1000);
     });
 })
+
+incrementScore = incomingScore => {
+  score += incomingScore;
+  scoreText.innerText = score;
+}
 
 startGame();
