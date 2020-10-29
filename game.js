@@ -20,8 +20,7 @@ let questions = [
       answer: 1
     },
     {
-      question:
-        "What is the correct syntax for referring to an external script called 'xxx.js'?",
+      question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
       choice1: "<script href='xxx.js'>",
       choice2: "<script name='xxx.js'>",
       choice3: "<script src='xxx.js'>",
@@ -41,6 +40,7 @@ let questions = [
 startGame = () => {
   questionCounter = 0;
   score = 0;
+  // fill the avaliable questions array from the questions
   availableQuestions = [...questions]
   // console.log(availableQuestions);
   
@@ -80,7 +80,7 @@ choice.forEach(choice => {
 
       const classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
 
-      console.log(classToApply)
+      // console.log(classToApply)
       // update the class
       selectedChoice.parentElement.classList.add(classToApply)
       // timeout before remove the class
